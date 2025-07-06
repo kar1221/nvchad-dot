@@ -62,8 +62,11 @@ local format = function()
 end
 
 local map = vim.keymap.set
+local nomap = vim.keymap.del
 
 -- actual mappings
+
+nomap("n", "<leader>ch")
 
 -- Code
 map("n", "<leader>cf", format, { desc = "Format Buffer" })

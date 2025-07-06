@@ -26,7 +26,8 @@ return {
         "html",
         "css",
         "vue",
-        "typescript"
+        "typescript",
+        "cpp"
       },
     },
   },
