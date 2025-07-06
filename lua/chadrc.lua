@@ -6,12 +6,23 @@
 local M = {}
 
 M.base46 = {
-	theme = "onedark",
+	theme = "everblush",
 
-	-- hl_override = {
 	-- 	Comment = { italic = true },
 	-- 	["@comment"] = { italic = true },
 	-- },
+}
+
+M.ui = {
+  cmp = {
+    icons_left = true,
+    style = "flat_dark"
+  },
+
+  statusline = {
+    theme = "minimal",
+    separator_style = "round"
+  }
 }
 
 -- M.nvdash = { load_on_startup = true }
