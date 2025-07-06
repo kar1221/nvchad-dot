@@ -129,6 +129,14 @@ vim.lsp.config("svelte", {
   end,
 })
 
+vim.lsp.config("rust-analyzer", {
+  enabled = true,
+})
+
+vim.lsp.config("bacon_ls", {
+  enabled = false
+})
+
 vim.lsp.enable(servers)
 
 -- read :h vim.lsp.config for changing options of lsp servers

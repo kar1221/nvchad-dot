@@ -13,6 +13,9 @@ return {
     end,
   },
 
+  {
+    "mason-org/mason-registry"
+  },
   -- test new blink
   { import = "nvchad.blink.lazyspec" },
 
@@ -25,9 +28,12 @@ return {
         "vimdoc",
         "html",
         "css",
+        "svelte",
         "vue",
         "typescript",
         "cpp",
+        "rust",
+        "ron"
       },
     },
   },

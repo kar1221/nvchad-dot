@@ -90,3 +90,5 @@ end, { desc = "Find Files (root)" })
 map("n", "<leader>fF", function()
   require("snacks").picker.pick("files", { cwd = vim.loop.cwd() })
 end, { desc = "Find Files (cwd)" })
+
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
