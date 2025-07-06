@@ -12,31 +12,6 @@ local vue_ts_plugin = {
   enableForWorkspaceTypeScriptVersions = true,
 }
 
-local function tailwind_root(fname)
-  local fp = (type(fname) == "number") and vim.api.nvim_buf_get_name(fname) or fname
-
-  -- 2) look for package.json upward from fp
-  local pkg_files = vim.fs.find("package.json", { path = fp, upward = true })
-  local pkg_path = pkg_files and pkg_files[1]
-  if not pkg_path then
-    return nil
-  end
-
-  -- 3) read package.json safely
-  local ok, lines = pcall(vim.fn.readfile, pkg_path)
-  if not ok then
-    return nil
-  end
-  local content = table.concat(lines, "\n")
-
-  -- 4) check for tailwindcss or @nuxt/ui
-  if content:match [["tailwindcss"%s*:]] or content:match [["@nuxt/ui"%s*:]] then
-    return vim.fs.dirname(pkg_path)
-  end
-
-  return nil
-end
-
 local servers = {
   "clangd",
   "cmake",
@@ -61,7 +36,6 @@ vim.lsp.config("cssls", {
 })
 
 vim.lsp.config("tailwindcss", {
-  root_dir = tailwind_root,
   settings = {
     tailwindCSS = {
       experimental = {

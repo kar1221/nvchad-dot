@@ -1,11 +1,13 @@
 return {
   "folke/snacks.nvim",
   opts = {
-    explorer = {},
-    input = {
+    explorer = {
       enabled = true,
     },
     picker = {
+      enabled = true,
+    },
+    input = {
       enabled = true,
     },
     indent = {
@@ -15,5 +17,4 @@ return {
       enabled = true,
     },
   },
-
 }
