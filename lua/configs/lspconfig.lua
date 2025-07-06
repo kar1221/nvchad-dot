@@ -4,11 +4,19 @@ local data_path = vim.fn.stdpath "data"
 local vue_lsp_pkg = "mason/packages/vue-language-server/node_modules/@vue/language-server"
 local vue_ls_path = data_path .. "/" .. vue_lsp_pkg
 
+local svelte_lsp_pkg = "mason/packages/svelte-language-server/node_modules/typescript-svelte-plugin"
+
 local vue_ts_plugin = {
   name = "@vue/typescript-plugin",
   location = vue_ls_path,
   languages = { "vue" },
   configNamespace = "typescript",
+  enableForWorkspaceTypeScriptVersions = true,
+}
+
+local svelte_ts_plugin = {
+  name = "typescript-svelte-plugin",
+  location = data_path .. "/" .. svelte_lsp_pkg,
   enableForWorkspaceTypeScriptVersions = true,
 }
 
@@ -86,11 +94,12 @@ vim.lsp.config("vtsls", {
     "typescriptreact",
     "typescript.tsx",
     "vue",
+    "svelte",
   },
   settings = {
     vtsls = {
       tsserver = {
-        globalPlugins = { vue_ts_plugin },
+        globalPlugins = { vue_ts_plugin, svelte_ts_plugin },
       },
       enableMoveToFileCodeAction = true,
       autoUseWorkspaceTsdk = true,
@@ -103,6 +112,21 @@ vim.lsp.config("vtsls", {
     },
     complete_function_calls = true,
   },
+})
+
+vim.lsp.config("svelte", {
+  on_attach = function(client, _)
+    if client.name == "svelte" then
+      vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+        pattern = { "*.js", "*.ts" },
+        callback = function(ctx)
+          client:notify("$/onDidChangeTsOrJsFile", {
+            uri = ctx.match,
+          })
+        end,
+      })
+    end
+  end,
 })
 
 vim.lsp.enable(servers)

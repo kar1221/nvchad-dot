@@ -40,8 +40,8 @@ return {
           score_offset = 8,
         },
         snippets = {
-          score_offset = 7
-        }
+          score_offset = 7,
+        },
       },
     },
 

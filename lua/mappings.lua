@@ -3,9 +3,9 @@ require "nvchad.mappings"
 -- stinky functions
 
 -- Holy chatgpt
-local uv     = vim.loop
-local api    = vim.api
-local fs     = vim.fs
+local uv = vim.loop
+local api = vim.api
+local fs = vim.fs
 
 -- files or dirs whose presence marks the project root
 local markers = { ".git", "package.json", "Makefile", "CMakeLists.txt", "Cargo.toml" }
@@ -55,7 +55,6 @@ local function project_root()
   local start = bufname ~= "" and bufname or uv.cwd()
   return find_root_dir(start)
 end
-
 
 local format = function()
   require("conform").format()
