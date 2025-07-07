@@ -35,6 +35,7 @@ local servers = {
   "tailwindcss",
   "vtsls",
   "vue_ls",
+  "bashls"
 }
 
 vim.lsp.config("cssls", {
@@ -131,10 +132,6 @@ vim.lsp.config("svelte", {
 
 vim.lsp.config("rust-analyzer", {
   enabled = true,
-})
-
-vim.lsp.config("bacon_ls", {
-  enabled = false
 })
 
 vim.lsp.enable(servers)
